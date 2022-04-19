@@ -1,0 +1,113 @@
+<mvc:View controllerName="nw.epm.refapps.purchaseorders.approve.controller.S3_PurchaseOrderDetails" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic">
+	<semantic:DetailPage id="detailPage" navButtonPress="onNavButtonPressed" title="{i18n>detailTitle}"
+		floatingFooter="true">
+<!--		<semantic:positiveAction>
+			<semantic:PositiveAction id="approveButton" text="{i18n>xbut.approve}" press="onApprovePressed"/>
+		</semantic:positiveAction>
+		<semantic:negativeAction>
+			<semantic:NegativeAction id="rejectButton" text="{i18n>xbut.reject}" press="onRejectPressed"/>
+		</semantic:negativeAction>
+		<semantic:customHeaderContent>
+			<Button icon="sap-icon://action" tooltip="{i18n>xtol.share}" id="actionSheetButton" press="onActionSheetPressed"
+				enabled="{viewProperties>/dataLoaded}"/>
+		</semantic:customHeaderContent>-->
+		<semantic:content>
+			<l:VerticalLayout id="attributesLayout" width="100%"
+				busy="{= !(${globalProperties>/isMetaDataLoading} || ${globalProperties>/isBusyApproving} || ${viewProperties>/dataLoaded}) }"
+				busyIndicatorDelay="{= ${globalProperties>/detailImmediateBusy} ? 0 : ${viewProperties>/originalBusyDelayAttributesLayout} }">
+				<ObjectHeader id="header" title="Extention Examples: {SupplierName}" responsive="true"
+					number="{parts: [ {path: 'GrossAmount'}, {path: 'CurrencyCode'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
+					numberUnit="{CurrencyCode}" intro="{parts:[{path: 'i18n>xfld.orderedBy'}, {path: 'OrderedByName'}], formatter: 'jQuery.sap.formatMessage'}">
+					<statuses>
+						<ObjectStatus id="status"
+							text="{path: 'ChangedAt', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, relative: true }}"
+							title="Extention Examples"/>
+					</statuses>
+				</ObjectHeader>
+				<!--Allow adding fields after the object header -->
+				<core:ExtensionPoint name="extensionAfterObjectHeader"/>
+				<!--Further information with purchase order number, delivery date and delivery address-->
+				<form:SimpleForm id="attributesSimpleForm" title="{i18n>xtit.formTitle}" layout="ResponsiveGridLayout" minWidth="1024" maxContainerCols="2"
+					class="sapUiForceWidthAuto sapUiResponsiveMargin" labelSpanL="3" labelSpanM="3" emptySpanL="5" emptySpanM="5" columnsL="1" columnsM="1">
+					<Label id="poIdLabel" text="{/#PurchaseOrder/POId/@sap:label}"/>
+					<Text id="poIdText" text="{POId}"/>
+					<Label id="deliveryDateLabel" text="{/#PurchaseOrder/DeliveryDateEarliest/@sap:label}"/>
+					<Text id="deliveryDateText"
+						text="{=${LaterDelivDateExist} ? ${parts:[{path: 'i18n>xfld.andLater'}, {path: 'DeliveryDateEarliest', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}], formatter: 'jQuery.sap.formatMessage'} : ${path:'DeliveryDateEarliest', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}} }"/>
+					<Label id="deliveryAddressLabel" text="{/#PurchaseOrder/DeliveryAddress/@sap:label}"/>
+					<Text id="deliveryAddressText" text="{DeliveryAddress}"/>
+					<Label  text="Extentionlable"/>
+					<Text  text="ExtentionText"/>
+				</form:SimpleForm>
+				<!--Allow adding fields after the form -->
+				<core:ExtensionPoint name="extensionAfterForm"/>
+			</l:VerticalLayout>
+			<!--Item list-->
+			<Table id="poItemsTable" headerText="{path: 'viewProperties>/itemCount', formatter: '.formatter.itemListTitle'}" noDataText=" "
+				updateFinished="onItemsTableUpdateFinished" class="sapUiForceWidthAuto sapUiResponsiveMargin"
+				enableBusyIndicator="{= !${globalProperties>/isBusyApproving} }"
+				busyIndicatorDelay="{= ${globalProperties>/detailImmediateBusy} ? 0 : ${viewProperties>/originalBusyDelayItemsTable} }">
+				<columns>
+					<!--Product description-->
+					<Column id="productColumn" width="30%">
+						<header>
+							<Label id="productLabel" text="{/#PurchaseOrderItem/Product/@sap:label}" class="sapMTableContentMargin"/>
+						</header>
+					</Column>
+					<Column id="productColumnn" width="30%">
+						<header>
+							<Label id="productLabell" text="MyExtentionTest" class="sapMTableContentMargin"/>
+						</header>
+					</Column>
+					<!--Delivery Date-->
+					<Column id="deliveryDateColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" width="15%" class="sapMTableContentMargin">
+						<header>
+							<Label id="itemDeliveryDateLabel" text="{/#PurchaseOrderItem/DeliveryDate/@sap:label}"/>
+						</header>
+					</Column>
+					<!--Ordered Quantity-->
+					<Column id="quantityColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="Right" width="15%"
+						class="sapMTableContentMargin">
+						<header>
+							<Label id="quantityLabel" text="{/#PurchaseOrderItem/Quantity/@sap:label}"/>
+						</header>
+					</Column>
+					<!--Item price-->
+					<Column id="priceColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="Right" width="20%"
+						class="sapMTableContentMargin">
+						<header>
+							<Label id="priceLabel" text="{/#PurchaseOrderItem/Price/@sap:label}"/>
+						</header>
+					</Column>
+					<!--Total value of the item-->
+					<Column id="grossAmountColumn" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="Right" width="20%"
+						class="sapMTableContentMargin">
+						<header>
+							<Label id="grossAmountLabel" text="{/#PurchaseOrderItem/GrossAmount/@sap:label}"/>
+						</header>
+					</Column>
+				</columns>
+				<ColumnListItem id="columnListItem">
+					<cells>
+						<!--Product description-->
+						<Text id="productCell" text="{Product}"/>
+						<!--Delivery Date-->
+						<Text id="deliveryDateCell" text="{path:'DeliveryDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}"/>
+						<!--Ordered Quantity-->
+						<Text id="quantitsCell" text="CheckOF View Extention"/>
+						<Text id="quantityCell" text="{path: 'Quantity', type: 'sap.ui.model.type.Integer'}"/>
+						<!--Item price-->
+						<ObjectNumber id="priceCell"
+							number="{parts: [ {path: 'Price'}, {path: 'PriceCurrency'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
+							unit="{PriceCurrency}" emphasized="false"/>
+						<!--Total value of the item-->
+						<ObjectNumber id="grossAmountCell"
+							number="{parts: [ {path: 'GrossAmount'}, {path: 'GrossAmountCurrency'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
+							unit="{GrossAmountCurrency}"/>
+					</cells>
+				</ColumnListItem>
+			</Table>
+		</semantic:content>
+	</semantic:DetailPage>
+</mvc:View>

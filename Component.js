@@ -1,0 +1,1 @@
+jQuery.sap.declare("nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.Component");sap.ui.component.load({name:"nw.epm.refapps.purchaseorders.approve",url:"/sap/bc/ui5_ui5/sap/ZSAMPLE_PO_APV"});this.nw.epm.refapps.purchaseorders.approve.Component.extend("nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.Component",{metadata:{manifest:"json"}});

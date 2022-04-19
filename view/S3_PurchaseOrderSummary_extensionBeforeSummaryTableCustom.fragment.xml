@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:layout="sap.ui.layout">
+	<!-- This extension point can be used to add fields to semantic:content -->
+	<Table xmlns="sap.m" id="purchaseOrderTable_clone" items="{globalProperties>/selectedPurchaseOrders}" updateFinished="onTableUpdateFinished"
+		class="sapUiForceWidthAuto sapUiResponsiveMargin" noDataText="{i18n>ymsg.noDataTextSummary}">
+		<columns>
+			<Column id="ExtentionPoint" class="sapMTableContentMargin">
+				<header>
+					<Label id="ExtentionLabel" text="Extention"/>
+				</header>
+			</Column>
+			<Column id="supplierNameColumn_clone" class="sapMTableContentMargin">
+				<header>
+					<Label id="supplierNameLabel_clone" text="{/#PurchaseOrder/Supplier/@sap:label}"/>
+				</header>
+			</Column>
+			<Column id="poIdColumn_clone" demandPopin="true" popinDisplay="Inline" minScreenWidth="Small" class="sapMTableContentMargin">
+				<header>
+					<Label id="poIdLabel_clone" text="{/#PurchaseOrder/POId/@sap:label}"/>
+				</header>
+			</Column>
+			<Column id="grossAmountColumn_clone" hAlign="Right" class="sapMTableContentMargin">
+				<header>
+					<Label id="grossAmountLabel_clone" text="{/#PurchaseOrder/GrossAmount/@sap:label}"/>
+				</header>
+				<footer>
+					<layout:Grid xmlns:layout="sap.ui.layout" id="balanceGrid_clone" width="100%" containerQuery=" true" hSpacing="0">
+						<Label id="budgetLabel_clone" text="{i18n>xfld.budget}" width="100%" labelFor="budget" class="sapUiSmallMarginTop">
+							<layoutData>
+								<layout:GridData id="budgetLabelGridData_clone" span="L6 M6 S6"/>
+							</layoutData>
+						</Label>
+						<ObjectNumber id="budget_clone"
+							number="{parts: [ {path: 'viewProperties>/SimulateBudgetReduction/OverallBudget'}, {path: 'viewProperties>/SimulateBudgetReduction/Currency'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
+							unit="{viewProperties>/SimulateBudgetReduction/Currency}" emphasized="false" textAlign="End" class="sapUiSmallMarginTop">
+							<layoutData>
+								<layout:GridData id="budgetGridData_clone" span="L6 M6 S6"/>
+							</layoutData>
+						</ObjectNumber>
+						<Label id="balanceLabel_clone" text="{i18n>xfld.balance}" width="100%" labelFor="balance">
+							<layoutData>
+								<layout:GridData id="balanceLabelGridData_clone" span="L6 M6 S6" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<ObjectNumber id="balance_clone"
+							number="{parts: [ {path: 'viewProperties>/SimulateBudgetReduction/RemainingBudget'}, {path: 'viewProperties>/SimulateBudgetReduction/Currency'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
+							unit="{viewProperties>/SimulateBudgetReduction/Currency}" textAlign="End">
+							<layoutData>
+								<layout:GridData id="balanceGridData_clone" span="L6 M6 S6"/>
+							</layoutData>
+						</ObjectNumber>
+					</layout:Grid>
+				</footer>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<Text id="Extention_text" text="This is Extention Text"/>
+				<ObjectIdentifier id="supplierNameCell_clone" title="{globalProperties>SupplierName}"
+					text="{path: 'globalProperties>ItemCount', formatter: '.formatter.items'}"/>
+				<Text id="poIdCell_clone" text="{globalProperties>POId}"/>
+				<ObjectNumber id="grossAmountCell_clone"
+					number="{parts: [ {path: 'globalProperties>GrossAmount'}, {path: 'globalProperties>CurrencyCode'}], type : 'sap.ui.model.type.Currency', formatter: '.formatter.minus', formatOptions: { showMeasure: false }}"
+					unit="{globalProperties>CurrencyCode}"/>
+			</cells>
+		</ColumnListItem>
+	</Table>
+</core:FragmentDefinition>

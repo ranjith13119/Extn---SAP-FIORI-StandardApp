@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic">
+	<!-- This extension point can be used to add fields to l:VerticalLayout -->
+	<!--<form:SimpleForm xmlns:form="sap.ui.layout.form" id="attributesSimpleForm_clone" title="{i18n>xtit.formTitle}" layout="ResponsiveGridLayout" minWidth="1024" maxContainerCols="2" class="sapUiForceWidthAuto sapUiResponsiveMargin" labelSpanL="3" labelSpanM="3" emptySpanL="5" emptySpanM="5" columnsL="1" columnsM="1">
+    			    <Label xmlns="sap.m" id="poIdLabel_clone" text="{/#PurchaseOrder/POId/@sap:label}"/>
+    			    <Text xmlns="sap.m" id="poIdText_clone" text="{POId}"/>
+    			    <Label xmlns="sap.m" id="deliveryDateLabel_clone" text="{/#PurchaseOrder/DeliveryDateEarliest/@sap:label}"/>
+    			    <Text xmlns="sap.m" id="deliveryDateText_clone" text="{=${LaterDelivDateExist}             ? ${parts:[{path: 'i18n>xfld.andLater'}, {path: 'DeliveryDateEarliest', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}}], formatter: 'jQuery.sap.formatMessage'}            : ${path:'DeliveryDateEarliest', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium'}} }"/>
+    			    <Label xmlns="sap.m" id="deliveryAddressLabel_clone" text="{/#PurchaseOrder/DeliveryAddress/@sap:label}"/>
+    			    <Text xmlns="sap.m" id="deliveryAddressText_clone" text="{DeliveryAddress}"/>
+    		    </form:SimpleForm> -->
+	<form:SimpleForm xmlns:form="sap.ui.layout.form" id="attributesSimpleForm_clonne" title="{i18n>xtit.formTitle}"
+		layout="ResponsiveGridLayout" minWidth="1024" maxContainerCols="2" class="sapUiForceWidthAuto sapUiResponsiveMargin" labelSpanL="3"
+		labelSpanM="3" emptySpanL="5" emptySpanM="5" columnsL="1" columnsM="1">
+		<Label xmlns="sap.m" id="deliveryAddressLabel_clonne" text="MyExtentionLabel"/>
+		<Text xmlns="sap.m" id="deliveryAddressText_clonne" text="MyExtentionText"/>
+		<Label xmlns="sap.m" id="deliveryAddressLabel_clonne1" text="This is Extention"/>
+		<Text xmlns="sap.m" id="deliveryAddressText_clonne1" text="Extention Trail"/>
+	</form:SimpleForm>
+</core:FragmentDefinition>

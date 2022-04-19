@@ -1,0 +1,116 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension",
+        "type": "application",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{shellTitle}}",
+        "dataSources": {
+            "ExampleService": {
+                "uri": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC/",
+                "settings": {
+                    "localUri": "./localService/metadata.xml"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "fioriexttemplate.replaceservicecomponent",
+            "version": "1.4.0"
+        }
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://Fiori7/F1373",
+            "favIcon": "icon/F1373_Approve_Purchase_Orders.ico"
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": []
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "dependencies": {
+            "minUI5Version": "1.44.17"
+        },
+        "models": {
+            "Test": {
+                "dataSource": "ExampleService",
+                "settings": {
+                    "autoExpandSelect": true,
+                    "operationMode": "Server",
+                    "groupId": "$auto",
+                    "synchronizationMode": "None"
+                }
+            }
+        },
+        "extends": {
+            "component": "nw.epm.refapps.purchaseorders.approve",
+            "extensions": {
+                "sap.ui.viewModifications": {
+                    "nw.epm.refapps.purchaseorders.approve.view.S3_PurchaseOrderDetails": {
+                        "poItemsTable": {
+                            "visible": false
+                        },
+                        "attributesSimpleForm": {
+                            "visible": false
+                        }
+                    }
+                },
+                "sap.ui.viewExtensions": {
+                    "nw.epm.refapps.purchaseorders.approve.view.S3_PurchaseOrderDetails": {
+                        "extensionAfterForm": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.view.S3_PurchaseOrderDetails_extensionAfterFormCustom",
+                            "type": "XML"
+                        },
+                        "extensionAfterObjectHeader": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.view.S3_PurchaseOrderDetails_extensionAfterObjectHeaderCustom",
+                            "type": "XML"
+                        }
+                    },
+                    "nw.epm.refapps.purchaseorders.approve.view.S3_PurchaseOrderSummary": {
+                        "extensionBeforeSummaryTable": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.view.S3_PurchaseOrderSummary_extensionBeforeSummaryTableCustom",
+                            "type": "XML"
+                        }
+                    }
+                },
+                "sap.ui.viewReplacements": {
+                    "nw.epm.refapps.purchaseorders.approve.view.S3_PurchaseOrderDetails": {
+                        "viewName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.view.S3_PurchaseOrderDetailsCustom",
+                        "type": "XML"
+                    }
+                },
+                "sap.ui.controllerExtensions": {
+                    "nw.epm.refapps.purchaseorders.approve.controller.S2_PurchaseOrders": {
+                        "controllerName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.controller.S2_PurchaseOrdersCustom"
+                    },
+                    "nw.epm.refapps.purchaseorders.approve.controller.S3_PurchaseOrderDetails": {
+                        "controllerName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.controller.S3_PurchaseOrderDetailsCustom"
+                    },
+                    "nw.epm.refapps.purchaseorders.approve.controller.S3_PurchaseOrderSummary": {
+                        "controllerName": "nw.epm.refapps.purchaseorders.approve.ZSAMPLE_PO_APVExtension.controller.S3_PurchaseOrderSummaryCustom"
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.platform.hcp": {
+        "uri": "webapp",
+        "_version": "1.1.0"
+    }
+}

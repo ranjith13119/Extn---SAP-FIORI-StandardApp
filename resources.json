@@ -1,0 +1,93 @@
+{
+    "resources": [
+        {
+            "name": "controller/S3_PurchaseOrderSummaryCustom.controller.js"
+        },
+        {
+            "name": "localService/mockdata/SpecialSuppliers/PurchaseOrderItems.json"
+        },
+        {
+            "name": "localService/mockdata/LargeAmount/PurchaseOrders.json"
+        },
+        {
+            "name": "localService/mockdata/LargeAmount/PurchaseOrderItems.json"
+        },
+        {
+            "name": "localService/mockdata/EmptyPOList/PurchaseOrders.json"
+        },
+        {
+            "name": "localService/mockdata/PurchaseOrders.json"
+        },
+        {
+            "name": "localService/mockdata/PurchaseOrderItems.json"
+        },
+        {
+            "name": "localService/mockdata/SpecialSuppliers/PurchaseOrders.json"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "controller/S3_PurchaseOrderDetailsCustom.controller.js"
+        },
+        {
+            "name": "controller/S2_PurchaseOrdersCustom.controller.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "controller/S3_PurchaseOrderSummaryCustom-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/S3_PurchaseOrderDetailsCustom-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/S2_PurchaseOrdersCustom-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../../../../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "view/S3_PurchaseOrderSummary_extensionBeforeSummaryTableCustom.fragment.xml"
+        },
+        {
+            "name": "view/S3_PurchaseOrderDetails_extensionAfterObjectHeaderCustom.fragment.xml"
+        },
+        {
+            "name": "view/S3_PurchaseOrderDetails_extensionAfterFormCustom.fragment.xml"
+        },
+        {
+            "name": "view/S3_PurchaseOrderDetailsCustom.view.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "visual_ext_index.html"
+        },
+        {
+            "name": "index.html"
+        }
+    ]
+}
